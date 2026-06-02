@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, maximum-scale=1">
+    <meta name="screen-orientation" content="landscape">
+    <meta name="x5-orientation" content="landscape">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Stickman vs Physics</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="stage" aria-label="Stickman vs Physics game scene">
+      <canvas id="game" width="640" height="360" tabindex="0"></canvas>
+      <div class="touch-controls" aria-label="mobile controls">
+        <div class="joystick" aria-label="move joystick">
+          <canvas class="joystick-canvas" width="180" height="180"></canvas>
+          <div class="joystick-knob" aria-hidden="true"></div>
+        </div>
+        <div class="edit-pad">
+          <button class="touch-button small" type="button" data-repeat-key="ArrowUp" aria-label="up">↑</button>
+          <button class="touch-button small" type="button" data-repeat-key="ArrowLeft" aria-label="left value">←</button>
+          <button class="touch-button small" type="button" data-repeat-key="ArrowRight" aria-label="right value">→</button>
+          <button class="touch-button small" type="button" data-repeat-key="ArrowDown" aria-label="down">↓</button>
+        </div>
+        <button class="touch-button jump-button" type="button" data-tap-key="Space" aria-label="jump">↑</button>
+        <button class="touch-button reset-button" type="button" data-tap-key="KeyR" aria-label="reset">R</button>
+        <button class="touch-button level-button" type="button" data-tap-key="KeyL" aria-label="level 7">L</button>
+      </div>
+    </main>
+    <script src="game.js"></script>
+    <script src="mobile-controls.js"></script>
+  </body>
+</html>

@@ -1,0 +1,211 @@
+:root {
+  color-scheme: dark;
+  background: #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.stage {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #000;
+  touch-action: none;
+  transform-origin: center center;
+}
+
+#game {
+  width: min(100vw, calc(100vh * 16 / 9));
+  height: min(100vh, calc(100vw * 9 / 16));
+  display: block;
+  background: #000;
+  outline: none;
+  image-rendering: auto;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.touch-controls {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  touch-action: none;
+}
+
+.joystick {
+  position: absolute;
+  left: max(18px, env(safe-area-inset-left));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  width: clamp(126px, 24vmin, 168px);
+  height: clamp(126px, 24vmin, 168px);
+  pointer-events: auto;
+  touch-action: none;
+  opacity: 0.86;
+}
+
+.joystick-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.joystick-knob {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(20px, 4.5vmin, 30px);
+  height: clamp(20px, 4.5vmin, 30px);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(248, 248, 248, 0.96);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.38),
+    0 0 18px rgba(255, 255, 255, 0.24);
+  pointer-events: none;
+  transition: opacity 120ms ease-out;
+}
+
+.edit-pad {
+  position: absolute;
+  left: 50%;
+  bottom: max(10px, env(safe-area-inset-bottom));
+  width: 118px;
+  height: 76px;
+  transform: translateX(-50%);
+  pointer-events: auto;
+}
+
+.touch-button {
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.16);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.12), inset 0 0 18px rgba(255, 255, 255, 0.04);
+  display: grid;
+  place-items: center;
+  font: 22px Georgia, "Times New Roman", serif;
+  line-height: 1;
+  pointer-events: auto;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.touch-button.is-held,
+.touch-button:active {
+  border-color: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.24), inset 0 0 16px rgba(255, 255, 255, 0.08);
+}
+
+.touch-button.small {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  font-size: 14px;
+}
+
+.edit-pad .small:nth-child(1) {
+  left: 42px;
+  top: 0;
+}
+
+.edit-pad .small:nth-child(2) {
+  left: 0;
+  top: 38px;
+}
+
+.edit-pad .small:nth-child(3) {
+  right: 0;
+  top: 38px;
+}
+
+.edit-pad .small:nth-child(4) {
+  left: 42px;
+  top: 38px;
+}
+
+.jump-button {
+  position: absolute;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  width: clamp(56px, 11vmin, 72px);
+  height: clamp(56px, 11vmin, 72px);
+  font-size: clamp(22px, 4.5vmin, 30px);
+}
+
+.reset-button,
+.level-button {
+  position: absolute;
+  left: max(14px, env(safe-area-inset-left));
+  width: 40px;
+  height: 40px;
+  font-size: 13px;
+}
+
+.reset-button {
+  top: max(14px, env(safe-area-inset-top));
+}
+
+.level-button {
+  top: max(60px, calc(env(safe-area-inset-top) + 60px));
+}
+
+@media (orientation: portrait) {
+  .stage {
+    left: 50%;
+    top: 50%;
+    width: 100vh;
+    height: 100vw;
+    inset: auto;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  #game {
+    width: min(100vh, calc(100vw * 16 / 9));
+    height: min(100vw, calc(100vh * 9 / 16));
+  }
+
+  .joystick {
+    width: clamp(126px, 24vmin, 168px);
+    height: clamp(126px, 24vmin, 168px);
+    bottom: max(24px, calc(env(safe-area-inset-bottom) + 18px));
+  }
+
+  .jump-button {
+    bottom: max(28px, calc(env(safe-area-inset-bottom) + 18px));
+  }
+
+  .edit-pad {
+    transform: translateX(-50%) scale(0.92);
+    transform-origin: center bottom;
+    bottom: max(14px, env(safe-area-inset-bottom));
+  }
+}
